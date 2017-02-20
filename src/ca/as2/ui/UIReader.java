@@ -1,4 +1,4 @@
-package ca.cmpt213.as2.ui;
+package ca.as2.ui;
 import java.util.Scanner;
 
 /**

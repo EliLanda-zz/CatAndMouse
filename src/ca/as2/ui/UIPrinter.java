@@ -1,4 +1,4 @@
-package ca.cmpt213.as2.ui;
+package ca.as2.ui;
 
 /**
  * Created by Matvei on 2017-02-17.
