@@ -27,16 +27,18 @@ public class MazeGenerator {
     public static List<List<BoardObjects>> generateMazeObjects (){
         //1. Creact a 2 dimentional array of BoardObjects
         List<List<BoardObjects>> boardMatrix =  new ArrayList<List<BoardObjects>>();
-        List<BoardObjects> row = new ArrayList<BoardObjects>();
+
         int width = 10;
         int height = 10;
         int currentX = 3;
         int currentY = 3;
         //2. set all objects in the array to be walls and invisible
-        for(int i = 0; i < width; i++){
-            row.add(new BoardObjects(false,"wall"));
-        }
+
         for(int k = 0; k < height; k++){
+            List<BoardObjects> row = new ArrayList<BoardObjects>();
+            for(int i = 0; i < width; i++){
+                row.add(new BoardObjects(false,"wall"));
+            }
             boardMatrix.add(row);
         }
 
@@ -50,13 +52,13 @@ public class MazeGenerator {
 
         //4. Select a  random starting point on the array. Use odd numbers for row and column. Set the BoardObject at this index to be path instead of wall
         Random random = new Random();
-        int xRand = random.nextInt(width-1);
+        int xRand = random.nextInt(width);
         while (xRand % 2 == 0){
-            xRand = random.nextInt(width-1);
+            xRand = random.nextInt(width);
         }
-        int yRand = random.nextInt(height-1);
+        int yRand = random.nextInt(height);
         while (yRand % 2 == 0){
-            yRand = random.nextInt(height-1);
+            yRand = random.nextInt(height);
         }
         boardMatrix.get(yRand).get(xRand).setVisible(true);
         boardMatrix.get(yRand).get(xRand).setTraversable(true);
@@ -78,6 +80,7 @@ public class MazeGenerator {
         int moveNum = 0;
         boolean isValidMove = false;
         while(hasValidMovesLeft) {
+            printBoard(boardMatrix);
             while (!isValidMove) {
                 dir = random.nextInt(4);
                // System.out.println("dir: " + dir + " x: " + currentX + " y: " + currentY);
@@ -141,7 +144,6 @@ public class MazeGenerator {
                     boardMatrix.get(currentY).get(currentX + 2).setType("path");
                     currentX += 2;
                 }
-                printBoard(boardMatrix);
                 //System.out.println("posX: " + posX.get(moveNum) + " posY: " + posY.get(moveNum));
                 moveNum++;
                 posX.add(currentX);
