@@ -77,10 +77,11 @@ public class MazeGenerator {
         boolean hasValidMovesLeft = true;
         posX.add(currentX);
         posY.add(currentY);
-        int moveNum = 0;
+        int moveNum = 1;
         boolean isValidMove = false;
         boolean needBackTrack = false;
         while(hasValidMovesLeft) {
+            System.out.println(moveNum + " posX: " + posX.get(moveNum-1) + " posY: " + posY.get(moveNum-1));
             printBoard(boardMatrix);
             boolean[] canGoDir = new boolean[4];
             for(int i = 0; i < 4; i++){
@@ -89,19 +90,18 @@ public class MazeGenerator {
             while (!isValidMove && !needBackTrack) {
                 needBackTrack = true;
                 dir = random.nextInt(4);
+                canGoDir[dir] = false;
                 //checks 2 indexes up
                 if (dir == 0 && currentY + 2 < height ) {
                     if ( boardMatrix.get(currentY + 2).get(currentX).isWall()) {
                         isValidMove = true;
                     }
-                    canGoDir[0] = false;
                 }
                 //checks 2 indexes down
                 else if (dir == 1 && currentY - 2 > 0 ) {
                     if (boardMatrix.get(currentY - 2).get(currentX).isWall()) {
                         isValidMove = true;
                     }
-                    canGoDir[1] = false;
                 }
                 //checks 2 indexes left
                 else if (dir == 2 && currentX - 2 > 0) {
@@ -109,7 +109,6 @@ public class MazeGenerator {
                     if (boardMatrix.get(currentY).get(currentX - 2).isWall()) {
                         isValidMove = true;
                     }
-                    canGoDir[2] = false;
 
                 }
                 //checks 2 indexes right
@@ -117,7 +116,6 @@ public class MazeGenerator {
                     if (boardMatrix.get(currentY).get(currentX + 2).isWall()) {
                         isValidMove = true;
                     }
-                    canGoDir[3] = false;
                 }
                 else {
                     isValidMove = false;
@@ -163,7 +161,6 @@ public class MazeGenerator {
                 //8. If a dead end is found, backtrack along the path until a new direction that meets the requirements layed out in step 66 is found. if none are found the maze is complete
 
                 moveNum--;
-                System.out.println(moveNum + " posX: " + posX.get(moveNum) + " posY: " + posY.get(moveNum));
                 currentX = posX.get(moveNum);
                 currentY = posY.get(moveNum);
             }
@@ -171,6 +168,7 @@ public class MazeGenerator {
                 hasValidMovesLeft = false;
             }
             isValidMove = false;
+            needBackTrack = false;
         }
 
         //9. traverse the 2dimensional array that this maze is stored in looking for BoardObjects tagged as walls. pick a random number between 1 and 10. if the number is less than a 3, re tagg this BoardObject to be a path.
