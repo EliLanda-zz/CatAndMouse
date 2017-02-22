@@ -60,6 +60,7 @@ public class PositionManager {
         if (destination.isTraversable()) {
             if (destination.getType() == "cheese") {
                 amountOfCheeseCollected++;
+                MazeGenerator.placeRandomObject("cheese", maze, 1);
             } else if (destination.getType() == "cat") {
                 Main.endGame(false);
             }

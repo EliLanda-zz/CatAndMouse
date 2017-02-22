@@ -185,42 +185,34 @@ public class MazeGenerator {
         boardMatrix.get(1).get(1).setX(1);
         boardMatrix.get(1).get(1).setY(1);
        // 11. traverse the  dimensional array that this maze is stored in and create an array of all the indexes containing BoardObjects tagged as path. randomly select from these indexes 1 index.
-        int cheeseCount = 0;
-        while (cheeseCount < 5) {
-            for (int k = 1; k < height - 1; k++) {
-                for (int i = 1; i < width - 1; i++) {
-                    if (boardMatrix.get(k).get(i).isPath()) {
-                        int randVal = random.nextInt(10);
-                        if (randVal < 4 && cheeseCount < 5) {
-                            //12. set the BoardObject at that index to be tagged as cheese
-                            boardMatrix.get(k).get(i).setType("cheese");
-                            cheeseCount++;
-                        }
-                    }
-                }
-            }
-        }
-        int catCount = 0;
-        while (catCount < 1) {
-            for (int k = 1; k < height - 1; k++) {
-                for (int i = 1; i < width - 1; i++) {
-                    if (boardMatrix.get(k).get(i).isPath()) {
-                        int randVal = random.nextInt(10);
-                        if (randVal < 4 && catCount < 5) {
-                            //12. set the BoardObject at that index to be tagged as cheese
-                            boardMatrix.get(k).get(i).setType("cat");
-                            catCount++;
-                        }
-                    }
-                }
-            }
-        }
+        boardMatrix = placeRandomObject("cheese", boardMatrix, 1);
+        boardMatrix = placeRandomObject("cat", boardMatrix, 3);
         for (int k = 1; k < height - 1; k++) {
             for (int i = 1; i < width - 1; i++) {
                 if (!boardMatrix.get(k).get(i).isWall()) {
                     boardMatrix.get(k).get(i).setTraversable(true);
                     boardMatrix.get(k).get(i).setX(i);
                     boardMatrix.get(k).get(i).setY(k);
+                }
+            }
+        }
+        return boardMatrix;
+    }
+
+    public static List<List<BoardObject>> placeRandomObject(String type, List<List<BoardObject>> boardMatrix, int numberOfObjects) {
+        Random random = new Random();
+        int objCount = 0;
+        while (objCount < numberOfObjects) {
+            for (int k = 1; k < boardMatrix.size() - 1; k++) {
+                for (int i = 1; i < boardMatrix.get(0).size() - 1; i++) {
+                    if (boardMatrix.get(k).get(i).isPath()) {
+                        int randVal = random.nextInt(10);
+                        if (randVal < 1 && objCount < numberOfObjects) {
+                            //12. set the BoardObject at that index to be tagged as cheese
+                            boardMatrix.get(k).get(i).setType(type);
+                            objCount++;
+                        }
+                    }
                 }
             }
         }

@@ -38,19 +38,19 @@ public class UIPrinter {
             for (int i = 0; i < 10; i++) {
                 if(boardMatrix.get(k).get(i).isVisible()) {
                     if (boardMatrix.get(k).get(i).isWall()) {
-                        cellChar = "w";
+                        cellChar = "#";
                     }
                     else if (boardMatrix.get(k).get(i).isCheese()) {
-                        cellChar = "c";
+                        cellChar = "$";
                     }
                     else if (boardMatrix.get(k).get(i).isCat()) {
-                        cellChar = "x";
+                        cellChar = "!";
                     }
                     else if (boardMatrix.get(k).get(i).isMouse()) {
-                        cellChar = "p";
+                        cellChar = "@";
                     }
                     else {
-                        cellChar = "-";
+                        cellChar = " ";
                     }
                 }
                 else {
@@ -67,7 +67,7 @@ public class UIPrinter {
     private static void getCheese(List<List<BoardObject>> maze) {
         for (List<BoardObject> row : maze) {
             for (BoardObject object : row) {
-                if (object.isCheese()){
+                if (object.isCheese() || object.isCat()){
                     object.setVisible(true);
                 }
             }
