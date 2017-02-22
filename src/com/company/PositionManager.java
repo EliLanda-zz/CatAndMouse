@@ -25,14 +25,22 @@ public class PositionManager {
         }
         else {
             BoardObject mouse = getMouse(maze);
-            if (command == "up")
+            if (command == "up") {
                 move(maze, mouse, maze.get(mouse.getY() - 1).get(mouse.getX()));
-            else if (command == "left")
+            }
+            else if (command == "left"){
+                System.out.println("y: " + mouse.getY() + " x: " + mouse.getX());
                 move(maze, mouse, maze.get(mouse.getY()).get(mouse.getX() - 1));
-            else if (command == "down")
+                System.out.println("y: " + mouse.getY() + " x: " + mouse.getX());
+            }
+            else if (command == "down") {
                 move(maze, mouse, maze.get(mouse.getY() + 1).get(mouse.getX()));
-            else if (command == "right")
+            }
+            else if (command == "right") {
+                System.out.println("y: " + mouse.getY() + " x: " + mouse.getX());
                 move(maze, mouse, maze.get(mouse.getY()).get(mouse.getX() + 1));
+                System.out.println("y: " + mouse.getY() + " x: " + mouse.getX());
+            }
         }
         return maze;
     }
@@ -56,7 +64,9 @@ public class PositionManager {
                 Main.endGame(false);
             }
             mouse.setType("empty");
+            mouse.setVisible(true);
             destination.setType("mouse");
+            destination.setVisible(true);
             maze.get(mouse.getY() - 1).get(mouse.getX()).setVisible(true);
             maze.get(mouse.getY() - 1).get(mouse.getX() + 1).setVisible(true);
             maze.get(mouse.getY()).get(mouse.getX() + 1).setVisible(true);

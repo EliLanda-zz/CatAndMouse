@@ -1,9 +1,20 @@
 package com.company;
 
+import ca.as2.ui.UIPrinter;
+import ca.as2.ui.UIReader;
+
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
-        MazeGenerator.generateMazeObjects();
+        boolean won = false;
+        List<List<BoardObject>> boardMatrixTemp = MazeGenerator.generateMazeObjects();
+        PositionManager positionManager = new PositionManager();
+        while (!won){
+            boardMatrixTemp = positionManager.updateMaze(boardMatrixTemp,UIReader.scanInput());
+            UIPrinter.printMaze(boardMatrixTemp);
+        }
 	// write your code here
     }
 

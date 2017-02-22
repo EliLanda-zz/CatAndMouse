@@ -60,7 +60,6 @@ public class MazeGenerator {
         //5. use x and y variables to keep track of your position
         currentX = xRand;
         currentY = yRand;
-        System.out.println("Set");
         //6. randomly pick a direction to go (either up, down, left, or right) - Before finalizing direction,
         //check if two cells into that direction is outside of the bounds of the maze (needs a valid array index) and make sure that the path in that direction is a wall.
         //if those conditions are not met, keep re picking directions. if it finds that it is at a dead end, we need to backtrack (more later).
@@ -74,8 +73,6 @@ public class MazeGenerator {
         boolean isValidMove = false;
         boolean needBackTrack = false;
         while(hasValidMovesLeft) {
-            System.out.println(moveNum + " posX: " + posX.get(moveNum-1) + " posY: " + posY.get(moveNum-1));
-            printBoard(boardMatrix);
             boolean[] canGoDir = new boolean[4];
             for(int i = 0; i < 4; i++){
                 canGoDir[i] = true;
@@ -180,9 +177,10 @@ public class MazeGenerator {
             boardMatrix.get(k).get(0).setType("wall");
             boardMatrix.get(k).get(width-1).setType("wall");
         }
-        printBoard(boardMatrix);
         //10. Set [1][1] to be tagged as player
-        boardMatrix.get(1).get(1).setType("player");
+        boardMatrix.get(1).get(1).setType("mouse");
+        boardMatrix.get(1).get(1).setX(1);
+        boardMatrix.get(1).get(1).setY(1);
        // 11. traverse the  dimensional array that this maze is stored in and create an array of all the indexes containing BoardObjects tagged as path. randomly select from these indexes 1 index.
         int cheeseCount = 0;
         while (cheeseCount < 5) {
@@ -199,7 +197,30 @@ public class MazeGenerator {
                 }
             }
         }
-        printBoard(boardMatrix);
+        int catCount = 0;
+        while (catCount < 1) {
+            for (int k = 1; k < height - 1; k++) {
+                for (int i = 1; i < width - 1; i++) {
+                    if (boardMatrix.get(k).get(i).isPath()) {
+                        int randVal = random.nextInt(10);
+                        if (randVal < 4 && catCount < 5) {
+                            //12. set the BoardObject at that index to be tagged as cheese
+                            boardMatrix.get(k).get(i).setType("cat");
+                            catCount++;
+                        }
+                    }
+                }
+            }
+        }
+        for (int k = 1; k < height - 1; k++) {
+            for (int i = 1; i < width - 1; i++) {
+                if (!boardMatrix.get(k).get(i).isWall()) {
+                    boardMatrix.get(k).get(i).setTraversable(true);
+                    boardMatrix.get(k).get(i).setX(i);
+                    boardMatrix.get(k).get(i).setY(k);
+                }
+            }
+        }
         return boardMatrix;
     }
     void randomDir (){

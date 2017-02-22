@@ -32,16 +32,16 @@ public class BoardObject {
     }
     //These need to be set up-------------
     public int getX() {
-        return 1;
+        return this.xCoodinate;
     }
     public int getY() {
-        return 1;
+        return this.yCoodinate;
     }
     public void setX(int x) {
-        //asdasd
+        this.xCoodinate = x;
     }
     public void setY(int y) {
-        //asdasd
+        this.yCoodinate = y;
     }
     //-------------------
     public String getTypeForTesting() { // used for testing
