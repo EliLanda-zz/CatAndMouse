@@ -61,7 +61,7 @@ public class UIPrinter {
             }
             mazeStr += "\n";
         }
-        mazeStr += "\n \n \n \n \n";
+        mazeStr += "\n";
         System.out.println(mazeStr);
     }
     private static void getCheese(List<List<BoardObject>> maze) {

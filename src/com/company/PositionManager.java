@@ -67,14 +67,14 @@ public class PositionManager {
             mouse.setVisible(true);
             destination.setType("mouse");
             destination.setVisible(true);
-            maze.get(mouse.getY() - 1).get(mouse.getX()).setVisible(true);
-            maze.get(mouse.getY() - 1).get(mouse.getX() + 1).setVisible(true);
-            maze.get(mouse.getY()).get(mouse.getX() + 1).setVisible(true);
-            maze.get(mouse.getY() + 1).get(mouse.getX() + 1).setVisible(true);
-            maze.get(mouse.getY() + 1).get(mouse.getX()).setVisible(true);
-            maze.get(mouse.getY() + 1).get(mouse.getX() - 1).setVisible(true);
-            maze.get(mouse.getY()).get(mouse.getX() - 1).setVisible(true);
-            maze.get(mouse.getY() - 1).get(mouse.getX() - 1).setVisible(true);
+            maze.get(destination.getY() - 1).get(destination.getX()).setVisible(true);
+            maze.get(destination.getY() - 1).get(destination.getX() + 1).setVisible(true);
+            maze.get(destination.getY()).get(destination.getX() + 1).setVisible(true);
+            maze.get(destination.getY() + 1).get(destination.getX() + 1).setVisible(true);
+            maze.get(destination.getY() + 1).get(destination.getX()).setVisible(true);
+            maze.get(destination.getY() + 1).get(destination.getX() - 1).setVisible(true);
+            maze.get(destination.getY()).get(destination.getX() - 1).setVisible(true);
+            maze.get(destination.getY() - 1).get(destination.getX() - 1).setVisible(true);
 
             if (amountOfCheeseCollected == 5){
                 Main.endGame(true);
