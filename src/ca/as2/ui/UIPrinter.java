@@ -33,6 +33,7 @@ public class UIPrinter {
     public static void printMaze(List<List<BoardObject>> boardMatrix) { //Is it a string in the end?
         String mazeStr = "";
         String cellChar = "";
+        getCheese(boardMatrix);
         for(int k = 0; k < 10; k ++) {
             for (int i = 0; i < 10; i++) {
                 if(boardMatrix.get(k).get(i).isVisible()) {
@@ -62,5 +63,14 @@ public class UIPrinter {
         }
         mazeStr += "\n \n \n \n \n";
         System.out.println(mazeStr);
+    }
+    private static void getCheese(List<List<BoardObject>> maze) {
+        for (List<BoardObject> row : maze) {
+            for (BoardObject object : row) {
+                if (object.isCheese()){
+                    object.setVisible(true);
+                }
+            }
+        }
     }
 }
