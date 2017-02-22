@@ -30,7 +30,7 @@ public class BoardObjects {
     public void setType(String type) {
         this.type = type;
     }
-    public String getType() {
+    public String getTypeForTesting() { // used for testing
         String p = "";
         if(this.type == "wall"){
             p = "w";
@@ -45,6 +45,9 @@ public class BoardObjects {
             p = "-";
         }
         return  p;
+    }
+    public String getType() { // used for testing
+        return this.type;
     }
 
     public boolean isTraversable() {

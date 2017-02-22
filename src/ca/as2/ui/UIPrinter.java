@@ -32,9 +32,23 @@ public class UIPrinter {
 
     public static void printMaze(List<List<BoardObjects>> boardMatrix) { //Is it a string in the end?
         String mazeStr = "";
+        String cellChar = "";
         for(int k = 0; k < 10; k ++) {
             for (int i = 0; i < 10; i++) {
-                mazeStr += boardMatrix.get(k).get(i).getType();
+
+                if(boardMatrix.get(k).get(i).getType() == "wall"){
+                    cellChar = "w";
+                }
+                else if (boardMatrix.get(k).get(i).getType() == "cheese"){
+                    cellChar = "c";
+                }
+                else if (boardMatrix.get(k).get(i).getType() == "player"){
+                    cellChar = "p";
+                }
+                else {
+                    cellChar = "-";
+                }
+                mazeStr += cellChar;
                 mazeStr += " ";
             }
             mazeStr += "\n";

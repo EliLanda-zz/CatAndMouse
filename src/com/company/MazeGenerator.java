@@ -208,7 +208,7 @@ public class MazeGenerator {
     static void printBoard (List<List<BoardObjects>> boardMatrix){
         for(int k = 0; k < 10; k ++) {
             for (int i = 0; i < 10; i++) {
-                System.out.print(boardMatrix.get(k).get(i).getType() + "   ");
+                System.out.print(boardMatrix.get(k).get(i).getTypeForTesting() + "   ");
             }
             System.out.print("\n");
         }
