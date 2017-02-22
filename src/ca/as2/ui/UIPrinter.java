@@ -35,21 +35,21 @@ public class UIPrinter {
         String cellChar = "";
         for(int k = 0; k < 10; k ++) {
             for (int i = 0; i < 10; i++) {
-
-                if(boardMatrix.get(k).get(i).isWall()){
-                    cellChar = "w";
-                }
-                else if (boardMatrix.get(k).get(i).isCheese()){
-                    cellChar = "c";
-                }
-                else if (boardMatrix.get(k).get(i).isCat()){
-                    cellChar = "x";
-                }
-                else if (boardMatrix.get(k).get(i).isMouse()){
-                    cellChar = "p";
+                if(boardMatrix.get(k).get(i).isVisible()) {
+                    if (boardMatrix.get(k).get(i).isWall()) {
+                        cellChar = "w";
+                    } else if (boardMatrix.get(k).get(i).isCheese()) {
+                        cellChar = "c";
+                    } else if (boardMatrix.get(k).get(i).isCat()) {
+                        cellChar = "x";
+                    } else if (boardMatrix.get(k).get(i).isMouse()) {
+                        cellChar = "p";
+                    } else {
+                        cellChar = "-";
+                    }
                 }
                 else {
-                    cellChar = "-";
+                    cellChar = "*";
                 }
                 mazeStr += cellChar;
                 mazeStr += " ";
