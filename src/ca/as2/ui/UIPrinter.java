@@ -1,5 +1,9 @@
 package ca.as2.ui;
 
+import com.company.BoardObjects;
+
+import java.util.List;
+
 /**
  * Created by Matvei on 2017-02-17.
  */
@@ -26,7 +30,16 @@ public class UIPrinter {
                 "**************************\n");
     }
 
-    public static void printMaze(String maze) { //Is it a string in the end?
-        System.out.println(maze);
+    public static void printMaze(List<List<BoardObjects>> boardMatrix) { //Is it a string in the end?
+        String mazeStr = "";
+        for(int k = 0; k < 10; k ++) {
+            for (int i = 0; i < 10; i++) {
+                mazeStr += boardMatrix.get(k).get(i).getType();
+                mazeStr += " ";
+            }
+            mazeStr += "\n";
+        }
+        mazeStr += "\n \n \n \n \n";
+        System.out.println(mazeStr);
     }
 }
