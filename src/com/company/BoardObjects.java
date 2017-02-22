@@ -35,8 +35,14 @@ public class BoardObjects {
         if(this.type == "wall"){
             p = "w";
         }
-        else {
+        else if (this.type == "cheese"){
+            p = "c";
+        }
+        else if (this.type == "player"){
             p = "p";
+        }
+        else {
+            p = "-";
         }
         return  p;
     }

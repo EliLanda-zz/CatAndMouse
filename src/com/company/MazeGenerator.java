@@ -52,13 +52,13 @@ public class MazeGenerator {
 
         //4. Select a  random starting point on the array. Use odd numbers for row and column. Set the BoardObject at this index to be path instead of wall
         Random random = new Random();
-        int xRand = random.nextInt(width);
+        int xRand = random.nextInt(width) + 1;
         while (xRand % 2 == 0){
-            xRand = random.nextInt(width);
+            xRand = random.nextInt(width) + 1;
         }
-        int yRand = random.nextInt(height);
+        int yRand = random.nextInt(height) + 1;
         while (yRand % 2 == 0){
-            yRand = random.nextInt(height);
+            yRand = random.nextInt(height) + 1;
         }
         boardMatrix.get(yRand).get(xRand).setVisible(true);
         boardMatrix.get(yRand).get(xRand).setTraversable(true);
@@ -92,7 +92,7 @@ public class MazeGenerator {
                 dir = random.nextInt(4);
                 canGoDir[dir] = false;
                 //checks 2 indexes up
-                if (dir == 0 && currentY + 2 < height ) {
+                if (dir == 0 && currentY + 2 < height-1 ) {
                     if ( boardMatrix.get(currentY + 2).get(currentX).isWall()) {
                         isValidMove = true;
                     }
@@ -112,7 +112,7 @@ public class MazeGenerator {
 
                 }
                 //checks 2 indexes right
-                else if (dir == 3 && currentX + 2 < width) {
+                else if (dir == 3 && currentX + 2 < width-1) {
                     if (boardMatrix.get(currentY).get(currentX + 2).isWall()) {
                         isValidMove = true;
                     }
@@ -172,7 +172,34 @@ public class MazeGenerator {
         }
 
         //9. traverse the 2dimensional array that this maze is stored in looking for BoardObjects tagged as walls. pick a random number between 1 and 10. if the number is less than a 3, re tagg this BoardObject to be a path.
-
+        for(int k = 1; k < height-1; k++){
+            for(int i = 1; i < width-1; i++){
+                int randVal = random.nextInt(10);
+                if(randVal < 4){
+                    boardMatrix.get(k).get(i).setType("path");
+                }
+            }
+        }
+        printBoard(boardMatrix);
+        //10. Set [1][1] to be tagged as player
+        boardMatrix.get(1).get(1).setType("player");
+       // 11. traverse the  dimensional array that this maze is stored in and create an array of all the indexes containing BoardObjects tagged as path. randomly select from these indexes 1 index.
+        int cheeseCount = 0;
+        while (cheeseCount < 5) {
+            for (int k = 1; k < height - 1; k++) {
+                for (int i = 1; i < width - 1; i++) {
+                    if (boardMatrix.get(k).get(i).isPath()) {
+                        int randVal = random.nextInt(10);
+                        if (randVal < 4 && cheeseCount < 5) {
+                            //12. set the BoardObject at that index to be tagged as cheese
+                            boardMatrix.get(k).get(i).setType("cheese");
+                            cheeseCount++;
+                        }
+                    }
+                }
+            }
+        }
+        printBoard(boardMatrix);
         return boardMatrix;
     }
     void randomDir (){
