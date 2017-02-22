@@ -6,4 +6,12 @@ public class Main {
         MazeGenerator.generateMazeObjects();
 	// write your code here
     }
+
+    public static void endGame(boolean won) {
+        if (won) {
+            ca.as2.ui.UIPrinter.printMessage("Way to go! You won!");
+        } else {
+            ca.as2.ui.UIPrinter.printMessage("Bad Luck! Try again!");
+        }
+    }
 }

@@ -19,7 +19,7 @@ public class UIPrinter {
                 "You cannot go through walls ('#')\n" +
                 "You want to find cheese ('$')\n" +
                 "If you step on a cat ('!'), you die!\n" +
-                "If you collect 4 pieces of cheese, you win!\n" +
+                "If you collect 5 pieces of cheese, you win!\n" +
                 "Enter 'w' to go up\n" +
                 "Enter 'd' to go down\n" +
                 "Enter 'a' to go left\n" +

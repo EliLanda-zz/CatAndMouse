@@ -1,6 +1,5 @@
 package com.company;
 
-import ca.as2.ui.UIPrinter;
 import com.sun.istack.internal.Nullable;
 
 import java.util.List;
@@ -51,8 +50,13 @@ public class PositionManager {
 
     private void move(List<List<BoardObject>> maze, BoardObject mouse, BoardObject destination) {
         if (destination.isTraversable()) {
-            mouse.setX(destination.getX());
-            mouse.setY(destination.getY());
+            if (destination.getType() == "cheese") {
+                amountOfCheeseCollected++;
+            } else if (destination.getType() == "cat") {
+                Main.endGame(false);
+            }
+            mouse.setType("empty");
+            destination.setType("mouse");
             maze.get(mouse.getY() - 1).get(mouse.getX()).setVisible(true);
             maze.get(mouse.getY() - 1).get(mouse.getX() + 1).setVisible(true);
             maze.get(mouse.getY()).get(mouse.getX() + 1).setVisible(true);
@@ -61,8 +65,12 @@ public class PositionManager {
             maze.get(mouse.getY() + 1).get(mouse.getX() - 1).setVisible(true);
             maze.get(mouse.getY()).get(mouse.getX() - 1).setVisible(true);
             maze.get(mouse.getY() - 1).get(mouse.getX() - 1).setVisible(true);
+
+            if (amountOfCheeseCollected == 5){
+                Main.endGame(true);
+            }
         } else {
-            UIPrinter.printMessage("You cannot go through wall!");
+            ca.as2.ui.UIPrinter.printMessage("You cannot go through wall!");
         }
     }
 }
