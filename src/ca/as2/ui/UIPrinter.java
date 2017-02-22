@@ -1,6 +1,6 @@
 package ca.as2.ui;
 
-import com.company.BoardObjects;
+import com.company.BoardObject;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class UIPrinter {
                 "**************************\n");
     }
 
-    public static void printMaze(List<List<BoardObjects>> boardMatrix) { //Is it a string in the end?
+    public static void printMaze(List<List<BoardObject>> boardMatrix) { //Is it a string in the end?
         String mazeStr = "";
         String cellChar = "";
         for(int k = 0; k < 10; k ++) {
@@ -38,13 +38,17 @@ public class UIPrinter {
                 if(boardMatrix.get(k).get(i).isVisible()) {
                     if (boardMatrix.get(k).get(i).isWall()) {
                         cellChar = "w";
-                    } else if (boardMatrix.get(k).get(i).isCheese()) {
+                    }
+                    else if (boardMatrix.get(k).get(i).isCheese()) {
                         cellChar = "c";
-                    } else if (boardMatrix.get(k).get(i).isCat()) {
+                    }
+                    else if (boardMatrix.get(k).get(i).isCat()) {
                         cellChar = "x";
-                    } else if (boardMatrix.get(k).get(i).isMouse()) {
+                    }
+                    else if (boardMatrix.get(k).get(i).isMouse()) {
                         cellChar = "p";
-                    } else {
+                    }
+                    else {
                         cellChar = "-";
                     }
                 }

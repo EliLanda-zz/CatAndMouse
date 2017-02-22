@@ -3,14 +3,14 @@ package com.company;
 /**
  * Created by Eli on 2017-02-17.
  */
-public class BoardObjects {
+public class BoardObject {
     private boolean isVisible = false;
     private boolean isTraversable = false;
     private String type = "wall";
     int yCoodinate = 0;
     int xCoodinate = 0;
 
-    public BoardObjects(boolean isVisible, String type) {
+    public BoardObject(boolean isVisible, String type) {
         this.isVisible = isVisible;
         this.type = type;
     }
@@ -30,6 +30,20 @@ public class BoardObjects {
     public void setType(String type) {
         this.type = type;
     }
+    //These need to be set up-------------
+    public int getX() {
+        return 1;
+    }
+    public int getY() {
+        return 1;
+    }
+    public void setX(int x) {
+        //asdasd
+    }
+    public void setY(int y) {
+        //asdasd
+    }
+    //-------------------
     public String getTypeForTesting() { // used for testing
         String p = "";
         if(this.type == "wall"){
@@ -95,4 +109,6 @@ public class BoardObjects {
             return false;
         }
     }
+
+
 }

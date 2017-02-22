@@ -24,9 +24,9 @@ public class MazeGenerator {
 	11. traverse the  dimensional array that this maze is stored in and create an array of all the indexes containing BoardObjects tagged as path. randomly select from these indexes 1 index.
 	12. set the BoardObject at that index to be tagged as cheese
 */
-    public static List<List<BoardObjects>> generateMazeObjects (){
+    public static List<List<BoardObject>> generateMazeObjects (){
         //1. Creact a 2 dimentional array of BoardObjects
-        List<List<BoardObjects>> boardMatrix =  new ArrayList<List<BoardObjects>>();
+        List<List<BoardObject>> boardMatrix =  new ArrayList<List<BoardObject>>();
 
         int width = 10;
         int height = 10;
@@ -35,14 +35,14 @@ public class MazeGenerator {
         //2. set all objects in the array to be walls and invisible
 
         for(int k = 0; k < height; k++){
-            List<BoardObjects> row = new ArrayList<BoardObjects>();
+            List<BoardObject> row = new ArrayList<BoardObject>();
             for(int i = 0; i < width; i++){
-                row.add(new BoardObjects(false,"wall"));
+                row.add(new BoardObject(false,"wall"));
             }
             boardMatrix.add(row);
         }
 
-       
+
         //4. Select a  random starting point on the array. Use odd numbers for row and column. Set the BoardObject at this index to be path instead of wall
         Random random = new Random();
         int xRand = random.nextInt(width) + 1;
@@ -205,7 +205,7 @@ public class MazeGenerator {
     void randomDir (){
 
     }
-    static void printBoard (List<List<BoardObjects>> boardMatrix){
+    static void printBoard (List<List<BoardObject>> boardMatrix){
         for(int k = 0; k < 10; k ++) {
             for (int i = 0; i < 10; i++) {
                 System.out.print(boardMatrix.get(k).get(i).getTypeForTesting() + "   ");
