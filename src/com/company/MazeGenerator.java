@@ -42,14 +42,7 @@ public class MazeGenerator {
             boardMatrix.add(row);
         }
 
-        //3. Set the BoardObjects in the [0][Y], [maxX][Y], [X][0], and [X][maxY] (xMax and yMax, are the last indexes) indexes to be visible. this will make the outer boarder of the maze visible
-        for(int k = 0; k < height; k++){
-           boardMatrix.get(0).get(k).setVisible(true);//Revisit
-           boardMatrix.get(height-1).get(k).setVisible(true);
-           boardMatrix.get(k).get(0).setVisible(true);
-           boardMatrix.get(k).get(width-1).setVisible(true);
-        }
-
+       
         //4. Select a  random starting point on the array. Use odd numbers for row and column. Set the BoardObject at this index to be path instead of wall
         Random random = new Random();
         int xRand = random.nextInt(width) + 1;
@@ -179,6 +172,13 @@ public class MazeGenerator {
                     boardMatrix.get(k).get(i).setType("path");
                 }
             }
+        }
+        //3. Set the BoardObjects in the [0][Y], [maxX][Y], [X][0], and [X][maxY] (xMax and yMax, are the last indexes) indexes to be visible. this will make the outer boarder of the maze visible
+        for(int k = 0; k < height; k++){
+            boardMatrix.get(0).get(k).setType("wall");
+            boardMatrix.get(height-1).get(k).setType("wall");
+            boardMatrix.get(k).get(0).setType("wall");
+            boardMatrix.get(k).get(width-1).setType("wall");
         }
         printBoard(boardMatrix);
         //10. Set [1][1] to be tagged as player
