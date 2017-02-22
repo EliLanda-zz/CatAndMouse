@@ -53,8 +53,6 @@ public class MazeGenerator {
         while (yRand % 2 == 0){
             yRand = random.nextInt(height) + 1;
         }
-        boardMatrix.get(yRand).get(xRand).setVisible(true);
-        boardMatrix.get(yRand).get(xRand).setTraversable(true);
         boardMatrix.get(yRand).get(xRand).setType("Path");
 
         //5. use x and y variables to keep track of your position
@@ -173,12 +171,17 @@ public class MazeGenerator {
         //3. Set the BoardObjects in the [0][Y], [maxX][Y], [X][0], and [X][maxY] (xMax and yMax, are the last indexes) indexes to be visible. this will make the outer boarder of the maze visible
         for(int k = 0; k < height; k++){
             boardMatrix.get(0).get(k).setType("wall");
+            boardMatrix.get(0).get(k).setVisible(true);
             boardMatrix.get(height-1).get(k).setType("wall");
+            boardMatrix.get(height-1).get(k).setVisible(true);
             boardMatrix.get(k).get(0).setType("wall");
+            boardMatrix.get(k).get(0).setVisible(true);
             boardMatrix.get(k).get(width-1).setType("wall");
+            boardMatrix.get(k).get(width-1).setVisible(true);
         }
         //10. Set [1][1] to be tagged as player
         boardMatrix.get(1).get(1).setType("mouse");
+        boardMatrix.get(1).get(1).setVisible(true);
         boardMatrix.get(1).get(1).setX(1);
         boardMatrix.get(1).get(1).setY(1);
        // 11. traverse the  dimensional array that this maze is stored in and create an array of all the indexes containing BoardObjects tagged as path. randomly select from these indexes 1 index.

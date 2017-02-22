@@ -10,6 +10,7 @@ public class Main {
     public static void main(String[] args) {
         boolean won = false;
         List<List<BoardObject>> boardMatrixTemp = MazeGenerator.generateMazeObjects();
+        UIPrinter.printMaze(boardMatrixTemp);
         PositionManager positionManager = new PositionManager();
         while (!won){
             boardMatrixTemp = positionManager.updateMaze(boardMatrixTemp,UIReader.scanInput());
