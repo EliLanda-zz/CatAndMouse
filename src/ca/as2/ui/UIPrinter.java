@@ -36,13 +36,16 @@ public class UIPrinter {
         for(int k = 0; k < 10; k ++) {
             for (int i = 0; i < 10; i++) {
 
-                if(boardMatrix.get(k).get(i).getType() == "wall"){
+                if(boardMatrix.get(k).get(i).isWall()){
                     cellChar = "w";
                 }
-                else if (boardMatrix.get(k).get(i).getType() == "cheese"){
+                else if (boardMatrix.get(k).get(i).isCheese()){
                     cellChar = "c";
                 }
-                else if (boardMatrix.get(k).get(i).getType() == "player"){
+                else if (boardMatrix.get(k).get(i).isCat()){
+                    cellChar = "x";
+                }
+                else if (boardMatrix.get(k).get(i).isMouse()){
                     cellChar = "p";
                 }
                 else {
