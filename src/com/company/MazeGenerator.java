@@ -29,7 +29,7 @@ public class MazeGenerator {
         //1. Creact a 2 dimentional array of BoardObjects
         List<List<BoardObject>> boardMatrix =  new ArrayList<List<BoardObject>>();
 
-        int width = 25;
+        int width = 20;
         int height = 15;
         int currentX = 3;
         int currentY = 3;
