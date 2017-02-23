@@ -38,8 +38,8 @@ public class UIPrinter {
     public static void printMaze(List<List<BoardObject>> boardMatrix) {
         String mazeStr = "";
         String cellChar = "";
-        for(int k = 0; k < 10; k ++) {
-            for (int i = 0; i < 10; i++) {
+        for(int k = 0; k < boardMatrix.size(); k ++) {
+            for (int i = 0; i < boardMatrix.get(0).size(); i++) {
                 if (boardMatrix.get(k).get(i).isCheese()) {
                     cellChar = "$";
                 }

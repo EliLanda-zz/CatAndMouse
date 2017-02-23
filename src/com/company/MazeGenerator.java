@@ -29,8 +29,8 @@ public class MazeGenerator {
         //1. Creact a 2 dimentional array of BoardObjects
         List<List<BoardObject>> boardMatrix =  new ArrayList<List<BoardObject>>();
 
-        int width = 10;
-        int height = 10;
+        int width = 25;
+        int height = 15;
         int currentX = 3;
         int currentY = 3;
         //2. set all objects in the array to be walls and invisible
@@ -171,14 +171,16 @@ public class MazeGenerator {
         }
         //3. Set the BoardObjects in the [0][Y], [maxX][Y], [X][0], and [X][maxY] (xMax and yMax, are the last indexes) indexes to be visible. this will make the outer boarder of the maze visible
         for(int k = 0; k < height; k++){
-            boardMatrix.get(0).get(k).setType("wall");
-            boardMatrix.get(0).get(k).setVisible(true);
-            boardMatrix.get(height-1).get(k).setType("wall");
-            boardMatrix.get(height-1).get(k).setVisible(true);
             boardMatrix.get(k).get(0).setType("wall");
             boardMatrix.get(k).get(0).setVisible(true);
             boardMatrix.get(k).get(width-1).setType("wall");
             boardMatrix.get(k).get(width-1).setVisible(true);
+        }
+        for(int k = 0; k < width; k++) {
+            boardMatrix.get(0).get(k).setType("wall");
+            boardMatrix.get(0).get(k).setVisible(true);
+            boardMatrix.get(height - 1).get(k).setType("wall");
+            boardMatrix.get(height - 1).get(k).setVisible(true);
         }
         //10. Set [1][1] to be tagged as player
         boardMatrix.get(1).get(1).setType("mouse");
