@@ -48,11 +48,11 @@ public class MazeGenerator {
         Random random = new Random();
         int xRand = random.nextInt(width);
         while (xRand % 2 == 0){
-            xRand = random.nextInt(width) + 1;
+            xRand = random.nextInt(width);
         }
         int yRand = random.nextInt(height);
         while (yRand % 2 == 0){
-            yRand = random.nextInt(height) + 1;
+            yRand = random.nextInt(height);
         }
         boardMatrix.get(yRand).get(xRand).setType("Path");
 
