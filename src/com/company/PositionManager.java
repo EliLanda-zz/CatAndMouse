@@ -2,7 +2,9 @@ package com.company;
 
 import com.sun.istack.internal.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Matvei on 2017-02-21.
@@ -58,6 +60,13 @@ public class PositionManager {
 
     private void move(List<List<BoardObject>> maze, BoardObject mouse, BoardObject destination) {
         if (destination.isTraversable()) {
+            for (List<BoardObject> row : maze) {
+                for (BoardObject object : row) {
+                    if (object.isCat()){
+                        maze = moveCat(object, maze);
+                    }
+                }
+            }
             if (destination.getType() == "cheese") {
                 amountOfCheeseCollected++;
                 MazeGenerator.placeRandomObject("cheese", maze, 1);
@@ -83,5 +92,28 @@ public class PositionManager {
         } else {
             ca.as2.ui.UIPrinter.printMessage("You cannot go through wall!");
         }
+    }
+
+    private List<List<BoardObject>> moveCat(BoardObject cat, List<List<BoardObject>> maze) {
+        List<BoardObject> possibleMoves = new ArrayList<>();
+        if(maze.get(cat.getY() - 1).get(cat.getX()).isPath()){
+            possibleMoves.add(maze.get(cat.getY() - 1).get(cat.getX()));
+        }
+        if(maze.get(cat.getY() + 1).get(cat.getX()).isPath()){
+            possibleMoves.add(maze.get(cat.getY() + 1).get(cat.getX()));
+        }
+        if(maze.get(cat.getY()).get(cat.getX() + 1).isPath()){
+            possibleMoves.add(maze.get(cat.getY()).get(cat.getX() + 1));
+        }
+        if(maze.get(cat.getY() - 1).get(cat.getX() - 1).isPath()){
+            possibleMoves.add(maze.get(cat.getY() - 1).get(cat.getX() - 1));
+        }
+        Random random = new Random();
+        int randVal = random.nextInt(possibleMoves.size());
+        cat.setType("empty");
+        cat.setVisible(true);
+        possibleMoves.get(randVal).setType("cat");
+        possibleMoves.get(randVal).setVisible(true);
+        return maze;
     }
 }
