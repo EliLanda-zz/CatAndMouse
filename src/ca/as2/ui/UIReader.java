@@ -11,7 +11,7 @@ public class UIReader {
         boolean valid = false;
         String input = "";
         while (!valid) {
-            System.out.print("Please enter your move:>");
+            System.out.print("Please enter your next step:>");
             Scanner scanner = new Scanner(System.in);
             input = scanner.nextLine();
             input = input.toLowerCase();
@@ -47,6 +47,23 @@ public class UIReader {
                 break;
         }
         return returnValue;
+    }
+
+    public static String scanRetry() {
+        Scanner scanner = new Scanner(System.in);
+        String answer = "";
+        boolean valid = false;
+        while(!valid) {
+            System.out.print("Would you like to try again? (y/n): ");
+            answer = scanner.nextLine();
+            answer = answer.toLowerCase();
+            if (answer.equals("n") || answer.equals("y")) {
+                valid = true;
+            } else {
+                System.out.println("Invalid input!");
+            }
+        }
+        return answer;
     }
 
     private static boolean isValid(String input) {

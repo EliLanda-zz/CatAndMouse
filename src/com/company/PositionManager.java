@@ -20,7 +20,7 @@ public class PositionManager {
     }
 
     public  List<List<BoardObject>> updateMaze(List<List<BoardObject>> maze, String command) {
-        if (command == "show map") {
+        if (command.equals("show map")) {
             for (List<BoardObject> row : maze) {
                 for (BoardObject object : row) {
                     object.setVisible(true);
@@ -29,16 +29,16 @@ public class PositionManager {
         }
         else {
             BoardObject mouse = getMouse(maze);
-            if (command == "up") {
+            if (command.equals("up")) {
                 move(maze, mouse, maze.get(mouse.getY() - 1).get(mouse.getX()));
             }
-            else if (command == "left"){
+            else if (command.equals("left")){
                 move(maze, mouse, maze.get(mouse.getY()).get(mouse.getX() - 1));
             }
-            else if (command == "down") {
+            else if (command.equals("down")) {
                 move(maze, mouse, maze.get(mouse.getY() + 1).get(mouse.getX()));
             }
-            else if (command == "right") {
+            else if (command.equals("right")) {
                 move(maze, mouse, maze.get(mouse.getY()).get(mouse.getX() + 1));
             }
         }
@@ -59,17 +59,17 @@ public class PositionManager {
     private void move(List<List<BoardObject>> maze, BoardObject mouse, BoardObject destination) {
         if (destination.isTraversable()) {
             //mark the progress
-            if (destination.getType() == "cheese") {
+            if (destination.getType().equals("cheese")) {
                 amountOfCheeseCollected++;
                 MazeGenerator.placeRandomObject("cheese", maze, 1);
-            } else if (destination.getType() == "cat") {
+            } else if (destination.getType().equals("cat")) {
                 Main.endGame(false);
             }
 
             //move the mouse, set the area around it visible.
             mouse.setType("empty");
             mouse.setVisible(true);
-            if (!(destination.getType() == "cat"))
+            if (!(destination.getType().equals("cat")))
                 destination.setType("mouse");
             destination.setVisible(true);
             maze.get(destination.getY() - 1).get(destination.getX()).setVisible(true);
@@ -122,11 +122,11 @@ public class PositionManager {
             Random random = new Random();
             int randVal = random.nextInt(possibleMoves.size());
             BoardObject dest = possibleMoves.get(randVal);
-            if (cat.getType() == "cat on cheese") {
+            if (cat.getType().equals("cat on cheese")) {
                 cat.setType("cheese");
-            } else if (cat.getType() == "triple cat") {
+            } else if (cat.getType().equals("triple cat")) {
                 cat.setType("double cat");
-            } else if (cat.getType() == "double cat"){
+            } else if (cat.getType().equals("double cat")){
                 cat.setType("cat");
             } else {
                 cat.setType("path");
@@ -134,9 +134,9 @@ public class PositionManager {
 
             if (dest.isCheese()) {
                 dest.setType("cat on cheese");
-            } else if (dest.getType() == "cat") {
+            } else if (dest.getType().equals("cat")) {
                 dest.setType("double cat");
-            } else if (dest.getType() == "double cat") {
+            } else if (dest.getType().equals("double cat")) {
                 dest.setType("triple cat");
             } else {
                 if (dest.isMouse())

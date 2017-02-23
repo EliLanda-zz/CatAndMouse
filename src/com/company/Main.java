@@ -15,15 +15,20 @@ public class Main {
 
     public static void main(String[] args) {
         end = false;
-        List<List<BoardObject>> boardMatrixTemp = MazeGenerator.generateMazeObjects();
-        UIPrinter.printInstructions();
-        UIPrinter.printMaze(boardMatrixTemp);
-        PositionManager positionManager = new PositionManager();
-        while (!end){
-            boardMatrixTemp = positionManager.updateMaze(boardMatrixTemp,UIReader.scanInput());
+        boolean retry = true;
+        while (retry) {
+            List<List<BoardObject>> boardMatrixTemp = MazeGenerator.generateMazeObjects();
+            UIPrinter.printInstructions();
             UIPrinter.printMaze(boardMatrixTemp);
+            PositionManager positionManager = new PositionManager();
+            while (!end) {
+                boardMatrixTemp = positionManager.updateMaze(boardMatrixTemp, UIReader.scanInput());
+                UIPrinter.printMaze(boardMatrixTemp);
+            }
+            if (UIReader.scanRetry().equals("n"))
+                retry = false;
+            end = false;
         }
-	// write your code here
     }
 
     public static void endGame(boolean won) {
