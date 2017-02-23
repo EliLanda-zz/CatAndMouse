@@ -46,11 +46,11 @@ public class MazeGenerator {
 
         //4. Select a  random starting point on the array. Use odd numbers for row and column. Set the BoardObject at this index to be path instead of wall
         Random random = new Random();
-        int xRand = random.nextInt(width) + 1;
+        int xRand = random.nextInt(width);
         while (xRand % 2 == 0){
             xRand = random.nextInt(width) + 1;
         }
-        int yRand = random.nextInt(height) + 1;
+        int yRand = random.nextInt(height);
         while (yRand % 2 == 0){
             yRand = random.nextInt(height) + 1;
         }
@@ -212,7 +212,7 @@ public class MazeGenerator {
             for (int k = 1; k < boardMatrix.size() - 1; k++) {
                 for (int i = 1; i < boardMatrix.get(0).size() - 1; i++) {
                     if (boardMatrix.get(k).get(i).isPath()) {
-                        int randVal = random.nextInt(10);
+                        int randVal = random.nextInt(40);
                         if (randVal < 1 && objCount < numberOfObjects) {
                             //12. set the BoardObject at that index to be tagged as cheese
                             boardMatrix.get(k).get(i).setType(type);
