@@ -1,7 +1,8 @@
 package com.company;
 
 /**
- * Created by Eli on 2017-02-17.
+ * A collection of characteristics of each cell
+ * @author Eli
  */
 public class BoardObject {
     private boolean isVisible = false;
@@ -78,7 +79,7 @@ public class BoardObject {
 
     }
     public boolean isCat() {
-        if (type == "cat" || type == "cat on cheese") {
+        if (type == "cat" || type == "cat on cheese" || type == "double cat" || type == "triple cat") {
             return true;
         }
         else {

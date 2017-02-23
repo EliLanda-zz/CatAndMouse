@@ -5,7 +5,8 @@ import com.company.BoardObject;
 import java.util.List;
 
 /**
- * Created by Matvei on 2017-02-17.
+ * Responsible for printing the data to the console
+ * @author Matt and Eli
  */
 public class UIPrinter {
     public static void printMessage(String message) {
@@ -30,7 +31,11 @@ public class UIPrinter {
                 "**************************\n");
     }
 
-    public static void printMaze(List<List<BoardObject>> boardMatrix) { //Is it a string in the end?
+    /**
+     * turns the maze into string and prints it out.
+     * @param boardMatrix
+     */
+    public static void printMaze(List<List<BoardObject>> boardMatrix) {
         String mazeStr = "";
         String cellChar = "";
         for(int k = 0; k < 10; k ++) {

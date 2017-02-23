@@ -5,6 +5,10 @@ import ca.as2.ui.UIReader;
 
 import java.util.List;
 
+/**
+ * Controls the flow of the game
+ * @author Matt and Eli
+ */
 public class Main {
 
     private static boolean end;
@@ -12,6 +16,7 @@ public class Main {
     public static void main(String[] args) {
         end = false;
         List<List<BoardObject>> boardMatrixTemp = MazeGenerator.generateMazeObjects();
+        UIPrinter.printInstructions();
         UIPrinter.printMaze(boardMatrixTemp);
         PositionManager positionManager = new PositionManager();
         while (!end){

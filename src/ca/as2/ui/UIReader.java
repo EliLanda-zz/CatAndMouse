@@ -2,10 +2,11 @@ package ca.as2.ui;
 import java.util.Scanner;
 
 /**
- * Created by Matvei on 2017-02-17.
+ * Responsible for reading user input and transferring it into game signals
+ * @author Matt
  */
 public class UIReader {
-    final private static String[] validInputs = {"w", "a", "s", "d", "m", "?"};
+    final private static String[] VALID_INPUTS = {"w", "a", "s", "d", "m", "?"};
     public static String scanInput() {
         boolean valid = false;
         String input = "";
@@ -49,7 +50,7 @@ public class UIReader {
     }
 
     private static boolean isValid(String input) {
-        for(String option : validInputs){
+        for(String option : VALID_INPUTS){
             if (input.equals(option))
                 return true;
         }

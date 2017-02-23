@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Created by Eli on 2017-02-17.
+ * Generates the Maze and places objects on it
+ * @author Eli
  */
 public class MazeGenerator {
    /* Maze Builder
