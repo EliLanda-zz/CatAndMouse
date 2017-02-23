@@ -60,13 +60,6 @@ public class PositionManager {
 
     private void move(List<List<BoardObject>> maze, BoardObject mouse, BoardObject destination) {
         if (destination.isTraversable()) {
-            for (List<BoardObject> row : maze) {
-                for (BoardObject object : row) {
-                    if (object.isCat()){
-                        maze = moveCat(object, maze);
-                    }
-                }
-            }
             if (destination.getType() == "cheese") {
                 amountOfCheeseCollected++;
                 MazeGenerator.placeRandomObject("cheese", maze, 1);
@@ -75,7 +68,8 @@ public class PositionManager {
             }
             mouse.setType("empty");
             mouse.setVisible(true);
-            destination.setType("mouse");
+            if (!(destination.getType() == "cat"))
+                destination.setType("mouse");
             destination.setVisible(true);
             maze.get(destination.getY() - 1).get(destination.getX()).setVisible(true);
             maze.get(destination.getY() - 1).get(destination.getX() + 1).setVisible(true);
@@ -85,6 +79,18 @@ public class PositionManager {
             maze.get(destination.getY() + 1).get(destination.getX() - 1).setVisible(true);
             maze.get(destination.getY()).get(destination.getX() - 1).setVisible(true);
             maze.get(destination.getY() - 1).get(destination.getX() - 1).setVisible(true);
+
+            List<BoardObject> cats = new ArrayList<>();
+            for (List<BoardObject> row : maze) {
+                for (BoardObject object : row) {
+                    if (object.isCat()){
+                       cats.add(object);
+                    }
+                }
+            }
+            for (BoardObject cat : cats) {
+                maze = moveCat(cat, maze);
+            }
 
             if (amountOfCheeseCollected == 5){
                 Main.endGame(true);
@@ -96,24 +102,36 @@ public class PositionManager {
 
     private List<List<BoardObject>> moveCat(BoardObject cat, List<List<BoardObject>> maze) {
         List<BoardObject> possibleMoves = new ArrayList<>();
-        if(maze.get(cat.getY() - 1).get(cat.getX()).isPath()){
+        if(maze.get(cat.getY() - 1).get(cat.getX()).isTraversable() && !(maze.get(cat.getY() - 1).get(cat.getX()).isCat())){
             possibleMoves.add(maze.get(cat.getY() - 1).get(cat.getX()));
         }
-        if(maze.get(cat.getY() + 1).get(cat.getX()).isPath()){
+        if(maze.get(cat.getY() + 1).get(cat.getX()).isTraversable() && !(maze.get(cat.getY() + 1).get(cat.getX()).isCat())){
             possibleMoves.add(maze.get(cat.getY() + 1).get(cat.getX()));
         }
-        if(maze.get(cat.getY()).get(cat.getX() + 1).isPath()){
+        if(maze.get(cat.getY()).get(cat.getX() + 1).isTraversable() && !(maze.get(cat.getY()).get(cat.getX() + 1).isCat())){
             possibleMoves.add(maze.get(cat.getY()).get(cat.getX() + 1));
         }
-        if(maze.get(cat.getY() - 1).get(cat.getX() - 1).isPath()){
-            possibleMoves.add(maze.get(cat.getY() - 1).get(cat.getX() - 1));
+        if(maze.get(cat.getY()).get(cat.getX() - 1).isTraversable() && !(maze.get(cat.getY()).get(cat.getX() - 1).isCat())){
+            possibleMoves.add(maze.get(cat.getY()).get(cat.getX() - 1));
         }
-        Random random = new Random();
-        int randVal = random.nextInt(possibleMoves.size());
-        cat.setType("empty");
-        cat.setVisible(true);
-        possibleMoves.get(randVal).setType("cat");
-        possibleMoves.get(randVal).setVisible(true);
+        if (!possibleMoves.isEmpty()) {
+            Random random = new Random();
+            int randVal = random.nextInt(possibleMoves.size());
+            BoardObject dest = possibleMoves.get(randVal);
+            if (cat.getType() == "cat on cheese") {
+                cat.setType("cheese");
+            } else {
+                cat.setType("path");
+            }
+
+            if (dest.isCheese()) {
+                dest.setType("cat on cheese");
+            } else {
+                if (dest.isMouse())
+                    Main.endGame(false);
+                dest.setType("cat");
+            }
+        }
         return maze;
     }
 }

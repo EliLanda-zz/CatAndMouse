@@ -78,7 +78,7 @@ public class BoardObject {
 
     }
     public boolean isCat() {
-        if (type == "cat") {
+        if (type == "cat" || type == "cat on cheese") {
             return true;
         }
         else {

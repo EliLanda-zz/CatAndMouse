@@ -184,6 +184,9 @@ public class MazeGenerator {
         boardMatrix.get(1).get(1).setVisible(true);
         boardMatrix.get(1).get(1).setX(1);
         boardMatrix.get(1).get(1).setY(1);
+        boardMatrix.get(1).get(2).setVisible(true);
+        boardMatrix.get(2).get(1).setVisible(true);
+        boardMatrix.get(2).get(2).setVisible(true);
        // 11. traverse the  dimensional array that this maze is stored in and create an array of all the indexes containing BoardObjects tagged as path. randomly select from these indexes 1 index.
         boardMatrix = placeRandomObject("cheese", boardMatrix, 1);
         boardMatrix = placeRandomObject("cat", boardMatrix, 3);
@@ -218,9 +221,7 @@ public class MazeGenerator {
         }
         return boardMatrix;
     }
-    void randomDir (){
 
-    }
     static void printBoard (List<List<BoardObject>> boardMatrix){
         for(int k = 0; k < 10; k ++) {
             for (int i = 0; i < 10; i++) {
