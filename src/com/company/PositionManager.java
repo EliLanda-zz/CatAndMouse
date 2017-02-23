@@ -33,17 +33,13 @@ public class PositionManager {
                 move(maze, mouse, maze.get(mouse.getY() - 1).get(mouse.getX()));
             }
             else if (command == "left"){
-                System.out.println("y: " + mouse.getY() + " x: " + mouse.getX());
                 move(maze, mouse, maze.get(mouse.getY()).get(mouse.getX() - 1));
-                System.out.println("y: " + mouse.getY() + " x: " + mouse.getX());
             }
             else if (command == "down") {
                 move(maze, mouse, maze.get(mouse.getY() + 1).get(mouse.getX()));
             }
             else if (command == "right") {
-                System.out.println("y: " + mouse.getY() + " x: " + mouse.getX());
                 move(maze, mouse, maze.get(mouse.getY()).get(mouse.getX() + 1));
-                System.out.println("y: " + mouse.getY() + " x: " + mouse.getX());
             }
         }
         return maze;
