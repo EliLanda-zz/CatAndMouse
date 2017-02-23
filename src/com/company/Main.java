@@ -7,12 +7,14 @@ import java.util.List;
 
 public class Main {
 
+    private static boolean end;
+
     public static void main(String[] args) {
-        boolean won = false;
+        end = false;
         List<List<BoardObject>> boardMatrixTemp = MazeGenerator.generateMazeObjects();
         UIPrinter.printMaze(boardMatrixTemp);
         PositionManager positionManager = new PositionManager();
-        while (!won){
+        while (!end){
             boardMatrixTemp = positionManager.updateMaze(boardMatrixTemp,UIReader.scanInput());
             UIPrinter.printMaze(boardMatrixTemp);
         }
@@ -25,5 +27,6 @@ public class Main {
         } else {
             ca.as2.ui.UIPrinter.printMessage("Bad Luck! Try again!");
         }
+        end = true;
     }
 }
